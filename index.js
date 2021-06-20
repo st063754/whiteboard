@@ -7,7 +7,6 @@ let connections = []
 io.on('connect', (socket) => {
     connections.push(socket);
     console.log(socket.id + " has connected");
-    console.log(connections[0].id)
     socket.on('draw', (data) => {
         connections.forEach(con => {
             if(con.id !== socket.id) {

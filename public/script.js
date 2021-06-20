@@ -4,12 +4,9 @@ var io = io.connect('https://st063754-whiteboard.herokuapp.com/')
 //var io = io.connect('localhost:8080')
 
 let current = {x: 0, y: 0}
-
 let last = {}
 
-
 let mouseDown = false
-
 
 function Draw(x, y, color, width, prev) {
     ctx.beginPath();
