@@ -7,11 +7,11 @@ let connections = []
 io.on('connect', (socket) => {
     connections.push(socket);
     console.log(socket.id + " has connected");
-
+    console.log(connections[0].id)
     socket.on('draw', (data) => {
         connections.forEach(con => {
             if(con.id !== socket.id) {
-                con.emit('ondraw' , {x: data.x, y: data.y, prevX: data.prevX, prevY: data.prevY, c: data.c, w: data.w})
+                con.emit('ondraw' , {x: data.x, y: data.y, c: data.c, w: data.w, id: data.id})
             }
         })
     })
@@ -19,7 +19,7 @@ io.on('connect', (socket) => {
     socket.on('down', (data) => {
         connections.forEach((con) => {
             if(con.id !== socket.id) {
-                con.emit('ondown', {x: data.x, y: data.y})
+                con.emit('ondown', {x: data.x, y: data.y, id: data.id})
             }
         })
     })
