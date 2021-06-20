@@ -1,6 +1,6 @@
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext('2d')
-var io = io.connect('http://localhost:8080')
+var io = io.connect('https://st063754-whiteboard.herokuapp.com/')
 
 let current = {x: 0, y: 0}
 let last = {x: 0, y: 0}
