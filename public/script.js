@@ -5,6 +5,8 @@ var io = io.connect('https://st063754-whiteboard.herokuapp.com/')
 
 let current = {x: 0, y: 0}
 let last = {x: 0, y: 0}
+let lastOther = {x: 0, y: 0}
+
 let mouseDown = false
 
 
@@ -19,6 +21,18 @@ function Draw(x, y, color, width) {
     ctx.stroke();
     last.x = x;
     last.y = y;
+}
+function DrawOther(x, y, color, width) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.lineJoin = "round";
+    ctx.moveTo(lastOther.x, lastOther.y);
+    ctx.lineTo(x, y);
+    ctx.closePath();
+    ctx.stroke();
+    lastOther.x = x;
+    lastOther.y = y;
 }
 
 function init(){
@@ -42,7 +56,7 @@ function init(){
 }
 
 
-io.on('ondraw', ({x,y,c,w}) => { Draw(x,y,c,w) })
-io.on('ondown', ({x,y}) => { last = {x,y} })
+io.on('ondraw', ({x,y,c,w}) => { DrawOther(x,y,c,w) })
+io.on('ondown', ({x,y}) => { lastOther = {x,y} })
 
 
